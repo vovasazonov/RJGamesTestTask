@@ -1,18 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
+using Project.Scripts.Game;
+using Project.Scripts.Game.Base.Config;
 using UnityEngine;
 
 public class Entry : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private GameConfig _config;
+    
+    private Game _game;
+    
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        _game = new Game(_config);
     }
 }
