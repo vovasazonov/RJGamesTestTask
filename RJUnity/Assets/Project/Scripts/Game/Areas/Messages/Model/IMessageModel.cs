@@ -7,10 +7,12 @@ namespace Project.Scripts.Game.Areas.Messages.Model
     {
         event Action<bool> SettingDisplayed;
         event Action<IMessageModel> Removed;
+        event Action HighlightUpdated;
         
         IUserModel User { get; }
         DateTime Time { get; }
         string Text { get; }
+        bool IsHighlight { get; set; }
 
         void DisplaySetting(bool isDisplay);
         void Remove();

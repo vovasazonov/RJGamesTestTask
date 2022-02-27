@@ -12,6 +12,9 @@ namespace Project.Scripts.Game.Areas.Messages.View
         [SerializeField] private TextMeshProUGUI _text;
         [SerializeField] private TextMeshProUGUI _time;
         [SerializeField] private Button _removeButton;
+        [SerializeField] private Image _background;
+        [SerializeField] private Sprite _highlightBackgroundSprite;
+        [SerializeField] private Sprite _classicBackgroundSprite;
 
         public event Action RemovedClicked;
 
@@ -33,6 +36,11 @@ namespace Project.Scripts.Game.Areas.Messages.View
         public DateTime Time
         {
             set => _time.text = value.TimeOfDay.ToString(@"hh\:mm\:ss");
+        }
+
+        public bool IsHighlightBackground
+        {
+            set => _background.sprite = value ? _highlightBackgroundSprite : _classicBackgroundSprite;
         }
 
         private void OnEnable()

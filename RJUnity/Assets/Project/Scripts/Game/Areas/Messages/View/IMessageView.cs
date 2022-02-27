@@ -11,6 +11,7 @@ namespace Project.Scripts.Game.Areas.Messages.View
         string NickName { set; }
         string Text { set; }
         DateTime Time { set; }
+        bool IsHighlightBackground { set; }
 
         void DisplaySetting(bool isDisplay);
         void Remove();

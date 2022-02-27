@@ -14,7 +14,7 @@ namespace Project.Scripts.Game.Areas.Messengers.Model
         public event Action<bool> SettingDisplayed;
 
         private readonly IUsersModel _users;
-        private readonly HashSet<IMessageModel> _messages = new();
+        private readonly List<IMessageModel> _messages = new();
 
         public IEnumerable<IMessageModel> Messages => _messages;
 
@@ -38,6 +38,8 @@ namespace Project.Scripts.Game.Areas.Messengers.Model
             {
                 CallOtherSent(message);
             }
+            
+            UpdateSentMessagesHighlight(message);
         }
 
         public void DisplaySetting(bool isDisplay)
@@ -49,8 +51,39 @@ namespace Project.Scripts.Game.Areas.Messengers.Model
                     message.DisplaySetting(isDisplay);
                 }
             }
-            
+
             CallSettingDisplayed(isDisplay);
+        }
+
+        private void UpdateSentMessagesHighlight(IMessageModel message)
+        {
+            int index = _messages.IndexOf(message);
+            message.IsHighlight = true;
+            if (index != 0)
+            {
+                var previousMessage = _messages[index - 1];
+                if (previousMessage.User.Id == message.User.Id)
+                {
+                    previousMessage.IsHighlight = false;
+                }
+            }
+        }
+
+        private void UpdateRemovingMessagesHighlight(IMessageModel message)
+        {
+            if (message.IsHighlight)
+            {
+                int index = _messages.IndexOf(message);
+                
+                if (index != 0)
+                {
+                    var previousMessage = _messages[index - 1];
+                    if (previousMessage.User.Id == message.User.Id)
+                    {
+                        previousMessage.IsHighlight = true;
+                    }
+                }
+            }
         }
 
         private IUserModel GetRandomUser()
@@ -70,6 +103,7 @@ namespace Project.Scripts.Game.Areas.Messengers.Model
 
         private void OnMessageRemoved(IMessageModel model)
         {
+            UpdateRemovingMessagesHighlight(model);
             RemoveMessageListeners(model);
             _messages.Remove(model);
             CallRemoved(model);
@@ -79,7 +113,7 @@ namespace Project.Scripts.Game.Areas.Messengers.Model
         {
             OwnerSent?.Invoke(model);
         }
-        
+
         private void CallOtherSent(IMessageModel model)
         {
             OtherSent?.Invoke(model);

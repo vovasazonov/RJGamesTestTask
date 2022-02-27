@@ -28,18 +28,26 @@ namespace Project.Scripts.Game.Areas.Messages.Presenter
             _view.Time = _model.Time;
             _view.Text = _model.Text;
             _view.DisplaySetting(false);
+            _view.IsHighlightBackground = _model.IsHighlight;
         }
 
         private void AddListeners()
         {
             _model.SettingDisplayed += OnSettingDisplayed;
             _view.RemovedClicked += OnRemovedClicked;
+            _model.HighlightUpdated += OnHighlightUpdated;
         }
 
         private void RemoveListeners()
         {
             _model.SettingDisplayed -= OnSettingDisplayed;
             _view.RemovedClicked -= OnRemovedClicked;
+            _model.HighlightUpdated -= OnHighlightUpdated;
+        }
+
+        private void OnHighlightUpdated()
+        {
+            _view.IsHighlightBackground = _model.IsHighlight;
         }
 
         private void OnRemovedClicked()

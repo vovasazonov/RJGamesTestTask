@@ -200,6 +200,9 @@ MonoBehaviour:
   _text: {fileID: 5278060742270022350}
   _time: {fileID: 5278060742405996314}
   _removeButton: {fileID: 0}
+  _background: {fileID: 5278060741622104302}
+  _highlightBackgroundSprite: {fileID: 21300000, guid: 7bac4809a40433c4eafdbb735a6836ee, type: 3}
+  _classicBackgroundSprite: {fileID: 21300000, guid: 4691745b534647945aff8c0fad970980, type: 3}
 --- !u!1 &5278060741199279782
 GameObject:
   m_ObjectHideFlags: 0

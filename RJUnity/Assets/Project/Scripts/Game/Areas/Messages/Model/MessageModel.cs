@@ -7,10 +7,26 @@ namespace Project.Scripts.Game.Areas.Messages.Model
     {
         public event Action<bool> SettingDisplayed;
         public event Action<IMessageModel> Removed;
+        public event Action HighlightUpdated;
+
+        private bool _isHighlight;
         
         public IUserModel User { get; }
         public DateTime Time { get; }
         public string Text { get; }
+
+        public bool IsHighlight
+        {
+            get => _isHighlight;
+            set
+            {
+                if (value != _isHighlight)
+                {
+                    _isHighlight = value;
+                    CallHighlightUpdated();
+                }   
+            }
+        }
 
         public MessageModel(IUserModel user, DateTime time, string text)
         {
@@ -37,6 +53,11 @@ namespace Project.Scripts.Game.Areas.Messages.Model
         private void CallSettingDisplayed(bool isDisplayed)
         {
             SettingDisplayed?.Invoke(isDisplayed);
+        }
+
+        private void CallHighlightUpdated()
+        {
+            HighlightUpdated?.Invoke();
         }
     }
 }
