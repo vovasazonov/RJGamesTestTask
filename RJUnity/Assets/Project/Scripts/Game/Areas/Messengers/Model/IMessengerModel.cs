@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using Project.Scripts.Game.Areas.Messages.Model;
 
-namespace Project.Scripts.Game.Areas.Messages.Model
+namespace Project.Scripts.Game.Areas.Messengers.Model
 {
-    public interface IMessagesModel
+    public interface IMessengerModel
     {
         event Action<IMessageModel> OwnerSent;
         event Action<IMessageModel> OtherSent;

@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Project.Scripts.Game.Areas.Messages.Model;
 using Project.Scripts.Game.Areas.Users.Model;
 
-namespace Project.Scripts.Game.Areas.Messages.Model
+namespace Project.Scripts.Game.Areas.Messengers.Model
 {
-    public class MessagesModel : IMessagesModel
+    public class MessengerModel : IMessengerModel
     {
         public event Action<IMessageModel> OwnerSent;
         public event Action<IMessageModel> OtherSent;
@@ -17,7 +18,7 @@ namespace Project.Scripts.Game.Areas.Messages.Model
 
         public IEnumerable<IMessageModel> Messages => _messages;
 
-        public MessagesModel(IUsersModel users)
+        public MessengerModel(IUsersModel users)
         {
             _users = users;
         }

@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using Project.Scripts.Game.Areas.Messages.View;
+using UnityEngine;
 
-namespace Project.Scripts.Game.Areas.Messages.View
+namespace Project.Scripts.Game.Areas.Messengers.View
 {
-    public class MessagesView : MonoBehaviour, IMessagesView
+    public class MessengerView : MonoBehaviour, IMessengerView
     {
         public IMessageView CreateOwner()
         {
