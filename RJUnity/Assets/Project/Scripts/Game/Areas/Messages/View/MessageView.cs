@@ -1,21 +1,23 @@
 ﻿using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Project.Scripts.Game.Areas.Messages.View
 {
     public class MessageView : MonoBehaviour, IMessageView
     {
-        [SerializeField] private SpriteRenderer _sprite;
+        [SerializeField] private Image _image;
         [SerializeField] private TextMeshProUGUI _nickName;
         [SerializeField] private TextMeshProUGUI _text;
         [SerializeField] private TextMeshProUGUI _time;
+        [SerializeField] private Button _removeButton;
 
-        public event Action Removed;
+        public event Action RemovedClicked;
 
         public Sprite Sprite
         {
-            set => _sprite.sprite = value;
+            set => _image.sprite = value;
         }
 
         public string NickName
@@ -30,23 +32,46 @@ namespace Project.Scripts.Game.Areas.Messages.View
 
         public DateTime Time
         {
-            set => _time.text = value.TimeOfDay.ToString();
+            set => _time.text = value.TimeOfDay.ToString(@"hh\:mm\:ss");
+        }
+
+        private void OnEnable()
+        {
+            if (_removeButton != null)
+            {
+                _removeButton.onClick.AddListener(OnRemoveClicked);
+            }
+        }
+
+        private void OnDisable()
+        {
+            if (_removeButton != null)
+            {
+                _removeButton.onClick.RemoveListener(OnRemoveClicked);
+            }
+        }
+
+        private void OnRemoveClicked()
+        {
+            CallRemovedClicked();
         }
 
         public void DisplaySetting(bool isDisplay)
         {
-            throw new NotImplementedException();
+            if (_removeButton != null)
+            {
+                _removeButton.gameObject.SetActive(isDisplay);
+            }
         }
 
         public void Remove()
         {
-            CallRemoved();
-            DestroyImmediate(this);
+            Destroy(gameObject);
         }
 
-        private void CallRemoved()
+        private void CallRemovedClicked()
         {
-            Removed?.Invoke();
+            RemovedClicked?.Invoke();
         }
     }
 }

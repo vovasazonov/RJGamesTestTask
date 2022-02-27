@@ -10,7 +10,7 @@ namespace Project.Scripts.Game.Areas.Messengers.Model
     {
         public event Action<IMessageModel> OwnerSent;
         public event Action<IMessageModel> OtherSent;
-        public event Action<IMessageModel> Removed;
+        public event Action<IMessageModel> MessageRemoved;
         public event Action<bool> SettingDisplayed;
 
         private readonly IUsersModel _users;
@@ -87,7 +87,7 @@ namespace Project.Scripts.Game.Areas.Messengers.Model
 
         private void CallRemoved(IMessageModel model)
         {
-            Removed?.Invoke(model);
+            MessageRemoved?.Invoke(model);
         }
 
         private void CallSettingDisplayed(bool isDisplay)

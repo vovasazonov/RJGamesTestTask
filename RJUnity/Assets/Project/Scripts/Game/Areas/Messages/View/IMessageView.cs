@@ -5,7 +5,7 @@ namespace Project.Scripts.Game.Areas.Messages.View
 {
     public interface IMessageView
     {
-        event Action Removed;
+        event Action RemovedClicked;
         
         Sprite Sprite { set; }
         string NickName { set; }

@@ -8,7 +8,7 @@ namespace Project.Scripts.Game.Areas.Messengers.Model
     {
         event Action<IMessageModel> OwnerSent;
         event Action<IMessageModel> OtherSent;
-        event Action<IMessageModel> Removed;
+        event Action<IMessageModel> MessageRemoved;
         event Action<bool> SettingDisplayed;
         
         IEnumerable<IMessageModel> Messages { get; }
