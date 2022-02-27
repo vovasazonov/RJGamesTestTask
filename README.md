@@ -2,6 +2,8 @@
 
 Проект сделан на версии Unity 2021.2.2f1
 
+Игровая сцена находится по адресу Assets/Project/Scenes/Game/Base/GameScene
+
 Конфигурации находятся по адресу Assets/Project/Configs
 
 ## Что еще не сделано:
