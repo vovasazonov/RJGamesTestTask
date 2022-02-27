@@ -199,6 +199,7 @@ MonoBehaviour:
   _nickName: {fileID: 5278060740808469910}
   _text: {fileID: 5278060742270022350}
   _time: {fileID: 5278060742405996314}
+  _removeButton: {fileID: 0}
 --- !u!1 &5278060741199279782
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,8 +235,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -971, y: 70.225}
-  m_SizeDelta: {x: 140.44989, y: 140.4499}
+  m_AnchoredPosition: {x: -998, y: 54}
+  m_SizeDelta: {x: 108, y: 108}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5278060741199279781
 CanvasRenderer:
