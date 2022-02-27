@@ -101,6 +101,12 @@ namespace Project.Scripts.Game.Areas.Messengers.Presenter
         public void Dispose()
         {
             RemoveListeners();
+            
+            foreach (var presenter in _messagePresenters.Values)
+            {
+                presenter.Dispose();
+            }
+            _messagePresenters.Clear();
         }
     }
 }

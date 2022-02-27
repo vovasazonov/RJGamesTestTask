@@ -1,4 +1,5 @@
-﻿using Project.Scripts.Game.Base.Config;
+﻿using System;
+using Project.Scripts.Game.Base.Config;
 using Project.Scripts.Game.Base.Model;
 using Project.Scripts.Game.Base.Presenter;
 using Project.Scripts.Game.Base.View;
@@ -10,7 +11,7 @@ namespace Project.Scripts.Game
         private readonly IGameModel _model;
         private readonly IGameConfig _config;
         private readonly IGameView _view;
-        private readonly GamePresenter _presenter;
+        private readonly IDisposable _presenter;
         
         public Game(IGameConfig config, IGameView view)
         {

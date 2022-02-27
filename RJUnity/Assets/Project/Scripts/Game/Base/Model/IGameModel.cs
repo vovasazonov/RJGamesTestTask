@@ -1,5 +1,4 @@
-﻿using Project.Scripts.Game.Areas.Messages.Model;
-using Project.Scripts.Game.Areas.Messengers.Model;
+﻿using Project.Scripts.Game.Areas.Messengers.Model;
 using Project.Scripts.Game.Areas.Users.Model;
 
 namespace Project.Scripts.Game.Base.Model
