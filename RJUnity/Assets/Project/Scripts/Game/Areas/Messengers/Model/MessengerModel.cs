@@ -59,14 +59,7 @@ namespace Project.Scripts.Game.Areas.Messengers.Model
         {
             int index = _messages.IndexOf(message);
             message.IsHighlight = true;
-            if (index != 0)
-            {
-                var previousMessage = _messages[index - 1];
-                if (previousMessage.User.Id == message.User.Id)
-                {
-                    previousMessage.IsHighlight = false;
-                }
-            }
+            SetHighlightPreviousMessage(index, false);
         }
 
         private void UpdateRemovingMessagesHighlight(IMessageModel message)
@@ -74,14 +67,18 @@ namespace Project.Scripts.Game.Areas.Messengers.Model
             if (message.IsHighlight)
             {
                 int index = _messages.IndexOf(message);
-                
-                if (index != 0)
+                SetHighlightPreviousMessage(index, true);
+            }
+        }
+
+        private void SetHighlightPreviousMessage(int currentIndex, bool isPreviousHighlight)
+        {
+            if (currentIndex != 0)
+            {
+                var previousMessage = _messages[currentIndex - 1];
+                if (previousMessage.User.Id == _messages[currentIndex].User.Id)
                 {
-                    var previousMessage = _messages[index - 1];
-                    if (previousMessage.User.Id == message.User.Id)
-                    {
-                        previousMessage.IsHighlight = true;
-                    }
+                    previousMessage.IsHighlight = isPreviousHighlight;
                 }
             }
         }

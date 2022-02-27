@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Project.Scripts.Core.Presenter;
 using Project.Scripts.Game.Areas.Messages.Model;
 using Project.Scripts.Game.Areas.Messages.View;
 using Project.Scripts.Game.Areas.Users.Config;
 
 namespace Project.Scripts.Game.Areas.Messages.Presenter
 {
-    public class MessagePresenter : IDisposable
+    public class MessagePresenter : IPresenter
     {
         private readonly IMessageModel _model;
         private readonly IMessageView _view;
@@ -63,7 +63,7 @@ namespace Project.Scripts.Game.Areas.Messages.Presenter
         public void Dispose()
         {
             RemoveListeners();
-            _view.Remove();
+            _view.Dispose();
         }
     }
 }

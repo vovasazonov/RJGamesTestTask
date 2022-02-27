@@ -72,14 +72,14 @@ namespace Project.Scripts.Game.Areas.Messages.View
             }
         }
 
-        public void Remove()
-        {
-            Destroy(gameObject);
-        }
-
         private void CallRemovedClicked()
         {
             RemovedClicked?.Invoke();
+        }
+
+        public void Dispose()
+        {
+            Destroy(gameObject);
         }
     }
 }

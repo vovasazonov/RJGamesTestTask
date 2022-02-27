@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Project.Scripts.Core.Presenter;
 using Project.Scripts.Game.Areas.Messages.Model;
 using Project.Scripts.Game.Areas.Messages.Presenter;
 using Project.Scripts.Game.Areas.Messages.View;
@@ -10,12 +10,12 @@ using Project.Scripts.Game.Base.Config;
 
 namespace Project.Scripts.Game.Areas.Messengers.Presenter
 {
-    public class MessengerPresenter : IDisposable
+    public class MessengerPresenter : IPresenter
     {
         private readonly IMessengerModel _model;
         private readonly IMessengerView _view;
         private readonly IGameConfig _gameConfig;
-        private readonly Dictionary<IMessageModel, IDisposable> _messagePresenters = new();
+        private readonly Dictionary<IMessageModel, IPresenter> _messagePresenters = new();
 
         public MessengerPresenter(IMessengerModel model, IMessengerView view, IGameConfig gameConfig)
         {
@@ -72,12 +72,12 @@ namespace Project.Scripts.Game.Areas.Messengers.Presenter
 
         private void OnOtherSent(IMessageModel model)
         {
-            CreateMessagePresenter(model, _view.CreateOther());
+            CreateMessagePresenter(model, _view.GetOtherMessageCreator().Create());
         }
 
         private void OnOwnerSent(IMessageModel model)
         {
-            CreateMessagePresenter(model, _view.CreateOwner());
+            CreateMessagePresenter(model, _view.GetOwnerMessageCreator().Create());
         }
 
         private void CreateMessagePresenter(IMessageModel model, IMessageView view)
@@ -101,12 +101,14 @@ namespace Project.Scripts.Game.Areas.Messengers.Presenter
         public void Dispose()
         {
             RemoveListeners();
-            
+
             foreach (var presenter in _messagePresenters.Values)
             {
                 presenter.Dispose();
             }
+
             _messagePresenters.Clear();
+            _view.Dispose();
         }
     }
 }

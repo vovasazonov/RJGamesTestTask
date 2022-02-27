@@ -1,8 +1,10 @@
 ﻿using System;
+using Project.Scripts.Core.View;
 using Project.Scripts.Game.Areas.Messages.View;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Object = System.Object;
 
 namespace Project.Scripts.Game.Areas.Messengers.View
 {
@@ -41,14 +43,14 @@ namespace Project.Scripts.Game.Areas.Messengers.View
             _approveButton.onClick.RemoveListener(CallApproveClicked);
         }
 
-        public IMessageView CreateOwner()
+        public IViewCreator<IMessageView> GetOwnerMessageCreator()
         {
-            return CreateMessage(_ownerMessagePrefab);
+            return new ViewCreator<MessageView>(_ownerMessagePrefab, _messagesParent);
         }
 
-        public IMessageView CreateOther()
+        public IViewCreator<IMessageView> GetOtherMessageCreator()
         {
-            return CreateMessage(_otherMessagePrefab);
+            return new ViewCreator<MessageView>(_otherMessagePrefab, _messagesParent);
         }
 
         public void DisplaySettings(bool isDisplay)
@@ -58,11 +60,6 @@ namespace Project.Scripts.Game.Areas.Messengers.View
             _removeButton.gameObject.SetActive(!isDisplay);
             _inputField.gameObject.SetActive(!isDisplay);
             _contentAnimator.Play(isDisplay ? "DisplayOnSetting" : "DisplayOffSetting");
-        }
-
-        private IMessageView CreateMessage(MessageView prefab)
-        {
-            return Instantiate(prefab, _messagesParent);
         }
 
         private void CallSendClicked()
@@ -78,6 +75,11 @@ namespace Project.Scripts.Game.Areas.Messengers.View
         private void CallApproveClicked()
         {
             ApproveClicked?.Invoke();
+        }
+
+        public void Dispose()
+        {
+            Destroy(gameObject);
         }
     }
 }

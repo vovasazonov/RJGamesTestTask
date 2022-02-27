@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Project.Scripts.Game.Areas.Messages.View
 {
-    public interface IMessageView
+    public interface IMessageView : IDisposable
     {
         event Action RemovedClicked;
         
@@ -14,6 +14,5 @@ namespace Project.Scripts.Game.Areas.Messages.View
         bool IsHighlightBackground { set; }
 
         void DisplaySetting(bool isDisplay);
-        void Remove();
     }
 }

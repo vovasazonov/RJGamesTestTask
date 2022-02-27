@@ -1,9 +1,12 @@
-﻿using Project.Scripts.Game.Areas.Messengers.View;
+﻿using Project.Scripts.Core.View;
+using Project.Scripts.Game.Areas.Messengers.View;
 
 namespace Project.Scripts.Game.Base.View
 {
     public interface IGameView
     {
-        IMessengerView Messenger { get; }
+        IViewCreator<IPrimitiveView> Camera { get; }
+        IViewCreator<IPrimitiveView> EventSystem { get; }
+        IViewCreator<IMessengerView> Messenger { get; }
     }
 }
