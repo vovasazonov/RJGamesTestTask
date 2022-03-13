@@ -1,13 +1,13 @@
 # RJGamesTestTask
 
-Проект сделан на версии Unity 2021.2.2f1
+Unity 2021.2.2f1
 
-Игровая сцена находится по адресу Assets/Project/Scenes/Game/Base/GameScene
+Main scene in Assets/Project/Scenes/Game/Base/GameScene
 
-Конфигурации находятся по адресу Assets/Project/Configs
+Configs in Assets/Project/Configs
 
-## Что еще не сделано:
-- При отправке сообщений не скроллится в самый низ.
-- Нету анимации при отправке и удаления сообщений.
-- Сообщения не расширяются в ширину и длину в зависимости от длины текста.
-- Нету более жирного разделения между двумя собеседниками.
+## what has not yet been developed:
+- When send message chat does not scrolls to down.
+- Not check for empty message.
+- There are not animation when send messages.
+- Messages are not changing their size dependence size text.
