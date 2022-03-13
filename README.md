@@ -6,7 +6,7 @@ Main scene in Assets/Project/Scenes/Game/Base/GameScene
 
 Configs in Assets/Project/Configs
 
-## what has not yet been developed:
+## What has not yet been developed:
 - When send message chat does not scrolls to down.
 - Not check for empty message.
 - There are not animation when send messages.
